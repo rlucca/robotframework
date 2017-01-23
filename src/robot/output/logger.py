@@ -75,8 +75,10 @@ class Logger(AbstractLogger):
             self.close()
 
     def register_console_logger(self, type='verbose', width=78, colors='AUTO',
-                                markers='AUTO', stdout=None, stderr=None):
-        logger = ConsoleOutput(type, width, colors, markers, stdout, stderr)
+                                markers='AUTO', stdout=None, stderr=None,
+                                verbosity=0, labeltype='all'):
+        logger = ConsoleOutput(type, width, colors, markers, stdout, stderr,
+                               verbosity, labeltype)
         self._console_logger = self._wrap_and_relay(logger)
 
     def _wrap_and_relay(self, logger):

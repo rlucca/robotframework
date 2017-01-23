@@ -114,7 +114,7 @@ class _BaseSettings(object):
             return None
         if name == 'OutputDir':
             return abspath(value)
-        if name in ['SuiteStatLevel', 'ConsoleWidth']:
+        if name in ['SuiteStatLevel', 'ConsoleWidth', 'VerbosityLevel']:
             return self._convert_to_positive_integer_or_default(name, value)
         if name == 'VariableFiles':
             return [split_args_from_name_or_path(item) for item in value]
@@ -392,6 +392,8 @@ class RobotSettings(_BaseSettings):
                        'ConsoleTypeQuiet'   : ('quiet', False),
                        'ConsoleWidth'       : ('consolewidth', 78),
                        'ConsoleMarkers'     : ('consolemarkers', 'AUTO'),
+                       'VerbosityLevel'     : ('verbositylevel', 0),
+                       'LabelMarkerType'    : ('labelmarker', 'all'),
                        'DebugFile'          : ('debugfile', None)}
 
     def get_rebot_settings(self):
@@ -469,12 +471,14 @@ class RobotSettings(_BaseSettings):
     @property
     def console_output_config(self):
         return {
-            'type':    self.console_type,
-            'width':   self.console_width,
-            'colors':  self.console_colors,
-            'markers': self.console_markers,
-            'stdout':  self['StdOut'],
-            'stderr':  self['StdErr']
+            'type':      self.console_type,
+            'width':     self.console_width,
+            'colors':    self.console_colors,
+            'markers':   self.console_markers,
+            'stdout':    self['StdOut'],
+            'stderr':    self['StdErr'],
+            'verbosity': self.verbosity_level,
+            'labeltype': self.label_marker
         }
 
     @property
@@ -508,6 +512,14 @@ class RobotSettings(_BaseSettings):
     @property
     def variable_files(self):
         return self['VariableFiles']
+
+    @property
+    def verbosity_level(self):
+        return self['VerbosityLevel']
+
+    @property
+    def label_marker(self):
+        return self['LabelMarkerType']
 
 
 class RebotSettings(_BaseSettings):

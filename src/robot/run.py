@@ -317,6 +317,8 @@ Options
                                     failed critical tests
                           quiet:    no output except for errors and warnings
                           none:     no output whatsoever
+    --verbositylevel level  Define a keyword to be printed if it is equal or
+                          below to a level informed. Default is 0 (zero).
  -. --dotted              Shortcut for `--console dotted`.
     --quiet               Shortcut for `--console quiet`.
  -W --consolewidth chars  Width of the monitor output. Default is 78.
@@ -329,6 +331,13 @@ Options
  -K --consolemarkers auto|on|off  Show markers on the console when top level
                           keywords in a test case end. Values have same
                           semantics as with --consolecolors.
+    --labelmarker all|args|lib|none  Define what the label in a marker should
+                          print. It will always print the keyword being
+                          executed. Default is args and lib activated.
+                          all: Print keyword with arguments and library name.
+                          args: Print keyword plus arguments.
+                          lib: Print keyword with the library name.
+                          none: Print just the keyword.
  -P --pythonpath path *   Additional locations (directories, ZIPs, JARs) where
                           to search test libraries and other extensions when
                           they are imported. Multiple paths can be given by

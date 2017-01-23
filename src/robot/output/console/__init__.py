@@ -21,10 +21,11 @@ from .verbose import VerboseOutput
 
 
 def ConsoleOutput(type='verbose', width=78, colors='AUTO', markers='AUTO',
-                  stdout=None, stderr=None):
+                  stdout=None, stderr=None, verbosity=0, labeltype='all'):
     upper = type.upper()
     if upper == 'VERBOSE':
-        return VerboseOutput(width, colors, markers, stdout, stderr)
+        return VerboseOutput(width, colors, markers, stdout, stderr,
+                             verbosity, labeltype)
     if upper == 'DOTTED':
         return DottedOutput(width, colors, stdout, stderr)
     if upper == 'QUIET':
