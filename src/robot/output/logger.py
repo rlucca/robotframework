@@ -77,7 +77,8 @@ class Logger(AbstractLogger):
     def register_console_logger(self, type='verbose', width=78, colors='AUTO',
                                 markers='AUTO', stdout=None, stderr=None):
         logger = ConsoleOutput(type, width, colors, markers, stdout, stderr)
-        self._console_logger = self._wrap_and_relay(logger)
+        #self._console_logger = self._wrap_and_relay(logger)
+        # TODO XXX
 
     def _wrap_and_relay(self, logger):
         logger = LoggerProxy(logger)
@@ -91,6 +92,7 @@ class Logger(AbstractLogger):
 
     def unregister_console_logger(self):
         self._console_logger = None
+        # TODO XXX
 
     def register_syslog(self, path=None, level='INFO'):
         if not path:
